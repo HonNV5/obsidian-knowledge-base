@@ -35,6 +35,11 @@ CAF còn **tích hợp với Well-Architected Framework và Azure Architecture C
 
 ## 2. Ánh xạ 6 pha CAF ↔ 4 giai đoạn vòng đời agent ⭐
 
+![[caf-ai-adoption-6-pha.png]]
+
+*Ảnh: Microsoft Learn — sáu pha AI adoption của Cloud Adoption Framework.*
+⭐ **Ảnh này bổ sung hai thứ mà phần chữ không nói rõ.** Thứ nhất: **ba pha đầu (AI Strategy → AI Plan → AI Ready) chạy TUYẾN TÍNH một lần**, còn **ba pha sau (Govern AI → Secure AI → Manage AI) nằm trong một VÒNG LẶP khép kín** — đúng bằng cách chia *Implementation* ↔ *Ongoing processes* ở §3 dưới đây. Thứ hai: **dải "Responsible AI principles" chạy NGANG dưới cả sáu pha**, nghĩa là Responsible AI **không phải một pha** mà là **nền tảng xuyên suốt** — đây là chỗ hay bị hiểu sai thành "làm RAI ở bước Govern".
+
 ```mermaid
 flowchart TD
     subgraph CAF["CAF AI adoption — 6 pha"]
