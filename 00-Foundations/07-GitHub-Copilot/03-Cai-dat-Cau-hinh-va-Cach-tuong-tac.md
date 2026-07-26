@@ -77,6 +77,11 @@ Cho phép **trò chuyện theo ngữ cảnh cụ thể ngay trong editor**, xin 
 2. `Ctrl+I` (Windows/Linux) hoặc `Cmd+I` (Mac) để mở inline chat.
 3. Hỏi hoặc yêu cầu thay đổi **riêng cho vị trí code đó**.
 
+![[vscode-context-menu-copilot.png]]
+
+*Ảnh: Microsoft Learn — menu chuột phải trong VS Code, submenu **Copilot**.*
+**Đây là cách kích hoạt thứ 9 mà bảng chữ dễ bỏ sót: bôi đen code → chuột phải → Copilot.** Submenu có đúng **5 mục**: **Start Inline Chat** (kèm phím tắt **`⌘I`** hiện ngay trên menu) · **Explain This** · **Fix This** · **Generate Docs** · **Generate Tests**. Bốn mục sau chính là **implicit prompt** — bấm menu tương đương gõ `/explain`, `/fix`, `/doc`, `/tests` mà **không phải nhớ tên lệnh** (xem [[17-Thuc-hanh-Copilot-theo-Ngon-ngu]]). Thanh trạng thái dưới cùng cho biết đang chọn **304 ký tự** — nhắc lại rằng **vùng bôi đen chính là ngữ cảnh** Copilot nhận.
+
 ### 1.5. Slash commands — lệnh gạch chéo
 
 **Phím tắt dạng lệnh** giúp thực hiện hành động nhanh mà không phải lần mò menu. Bốn lệnh giáo trình nêu trong module này:

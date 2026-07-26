@@ -56,12 +56,57 @@ source: [Microsoft Learn — Leveling up code reviews and pull requests with Git
 | **Writing effective PR summaries** | Từ **PR description editor**, dùng **icon Copilot** để **sinh draft summary hoặc outline**. Dù bạn có sửa lại, việc có sẵn khung tốt vẫn tiết kiệm thời gian |
 | **Explaining and reviewing code** | Nhờ Copilot **giải thích thay đổi** khi bạn không quen code; và **tự chạy review sơ bộ cho PR của chính mình** trước khi nhờ đồng đội → bắt lỗi nhỏ, kiểm best practice, tự tin hơn về chất lượng |
 
+### 1.4. Ví dụ nguyên văn: Copilot dọn bảng trong mô tả PR
+
+Đây là **ví dụ cụ thể duy nhất** trong cả giáo trình cho thấy Copilot **sửa một artifact có sẵn** thay vì sinh code mới — đáng nhớ vì nó minh hoạ ranh giới *reviewer* vs *coding agent*.
+
+**Developer nộp PR kèm bảng thời gian tải trang — khó đọc, không theo Markdown style guide của team:**
+
+| Test Run | LoadTimeBefore | LoadTimeAfter |
+|---|---|---|
+| | 1.3 | 1.2 |
+| | 1.2 | 1.1 |
+| | 1.1 | 0.885 |
+| | 1.3 | 1.3 |
+| Average | 1.22 | 1.0806 |
+
+> ⚠ **Cái sai nằm ở đâu:** cột **`Test Run` bị bỏ trống** ở 5 dòng dữ liệu (không biết dòng nào là lần chạy nào) · tiêu đề **dính chữ, không có đơn vị** (`LoadTimeBefore` — giây? mili giây?).
+
+**Copilot đăng comment:**
+
+> *"This table doesn't follow your repository's Markdown guidelines. Here's a cleaned-up version based on your company's style guide."*
+
+**Và kèm bản đã sửa, dán thẳng vào mô tả PR được:**
+
+| Test Run | Load Time Before (seconds) | Load Time After Updates (seconds) |
+|---|---|---|
+| 1 | 1.3 | 1.2 |
+| 2 | 1.2 | 1.1 |
+| 3 | 1.1 | 0.885 |
+| 4 | 1.3 | 1.3 |
+| 5 | 1.2 | 0.918 |
+| **Average** | **1.22** | **1.0806** |
+
+**Ba thứ Copilot đã sửa:** **đánh số lần chạy 1-5** · **tách chữ và thêm đơn vị `(seconds)`** · **giữ nguyên số liệu**. Reviewer **chấp nhận bằng một cú bấm**, không mất thời gian định dạng lại.
+
+> **Câu chốt của nguồn:** đây là Copilot đóng vai **automatic reviewer (not a coding agent)** — nó **nhìn thấy bảng chưa định dạng**, **áp guideline công ty lấy từ `.github/copilot-instructions.md`**, và **cung cấp bản sửa ngay trong comment**.
+
 ## 2. Dùng Copilot làm reviewer trên GitHub.com
 
 ![[pr-add-copilot-reviewer.png]]
 
 *Ảnh: Microsoft Learn — thêm Copilot vào menu Reviewers của một pull request.*
 Điều đáng chú ý là Copilot xuất hiện **trong đúng menu Reviewers như một đồng đội**, không phải một nút riêng — đó là dụng ý thiết kế: comment của nó **hành xử y như comment người** (react được, resolve được, reply được), nhưng **không mang quyền approve**.
+
+![[pr-copilot-suggested-change.png]]
+
+*Ảnh: Microsoft Learn — một comment review thật của Copilot trên diff, kèm khối Suggested change.*
+**Đọc ảnh từ trên xuống để thấy trọn vòng đời một comment của Copilot:** diff thêm 2 dòng ở `code_review_creator.rb` → Copilot (badge **AI**, nhãn **Beta**) phát hiện **`random_greetin` viết sai chính tả, đúng ra là `random_greeting`** → đề xuất trong khối **Suggested change** dạng diff `-`/`+` → tác giả bấm **Commit suggestion** *(hoặc **Add to batch** để gom nhiều gợi ý commit một lần, hoặc **Open in Workspace**)*.
+
+**Ba điều rút ra, đều là điểm thi:**
+- Gợi ý của Copilot **áp được bằng một cú bấm** — đây là dạng comment **hành động được**, không phải nhận xét suông.
+- Nó nằm **cùng luồng hội thoại với người** — có **👍/👎**, có ô **Reply**, có nút **Resolve conversation**. Đúng như mô tả ở trên: hành xử y như comment người.
+- Dòng cảnh báo **luôn đi kèm mọi comment**: *"Copilot is powered by AI, so mistakes are possible. **Review output carefully before use.**"* — nguồn cố tình để lộ nó trong ảnh; nếu đề hỏi *"trách nhiệm cuối thuộc về ai"*, đáp án luôn là **con người**.
 
 ### 2.1. Năm bước
 
@@ -172,6 +217,13 @@ flowchart LR
 
 *Ảnh: Microsoft Learn — tạo New branch ruleset trong Settings của repository.*
 Lưu ý đường đi trong menu: **Settings → Code and automation → Rules → Rulesets** — đây là chi tiết hay bị hỏi. Ruleset là cơ chế **branch protection thế hệ mới** của GitHub, nên tuỳ chọn "Request pull request review from Copilot" **nằm lồng bên trong** rule "Require a pull request before merging", chứ không phải một mục độc lập.
+
+![[ruleset-request-copilot-review.png]]
+
+*Ảnh: Microsoft Learn — panel additional settings của rule "Require a pull request before merging".*
+⭐ **Đây là ảnh chứng minh trực quan cho §2.2 (Copilot không chặn merge).** Hai checkbox được tích: **"Require a pull request before merging"** và **"Request pull request review from Copilot"** *(nhãn **Preview**)* — mô tả nguyên văn: *"Automatically request review from Copilot for new pull requests, **if the author has access to Copilot code review**"*. Nhưng nhìn ngay bên trên: **Required approvals = 0**. **Bật review tự động của Copilot KHÔNG tự động sinh ra một approval bắt buộc** — hai thứ là hai ô cấu hình độc lập. Muốn ép người đọc feedback thì phải tích thêm **"Require conversation resolution before merging"** (ô ngay phía trên) chứ không phải trông vào Copilot.
+
+> **Chi tiết dễ ăn điểm:** ô **"Require review from specific teams"** mang nhãn **Private preview**, còn ô Copilot và **"Allowed merge methods"** (Merge, Squash, Rebase) mang nhãn **Preview** — cho thấy tính năng review tự động bằng Copilot **vẫn ở giai đoạn preview** tại thời điểm giáo trình biên soạn.
 
 > **Tuỳ chọn thêm ở mức repo:** bật **"Require conversation resolution before merging"** để **buộc developer đọc feedback của Copilot**.
 

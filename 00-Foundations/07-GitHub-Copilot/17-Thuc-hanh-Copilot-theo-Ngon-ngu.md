@@ -171,6 +171,11 @@ with open("file.txt", "r") as file:
 
 > **Điểm thi:** `/fix` **tự mang theo prompt "hãy tìm và sửa lỗi trong đoạn code được chọn"**. Bạn không gõ prompt đó — nó **ngầm định**. Đó chính là *implicit prompt*.
 
+![[chat-selection-fix.png]]
+
+*Ảnh: Microsoft Learn — prompt chỉ gồm đúng hai chip: `#selection` `/fix`.*
+⭐ **Ảnh gói trọn cả §5 lẫn §6 trong một khung hình.** Ô chat **không có một chữ tiếng Anh nào** — chỉ **`#selection`** (*selective context*: chỉ dùng vùng đang bôi đen, thấy rõ ở dòng 33-35 được highlight bên phải) + **`/fix`** (*implicit prompt*: ý định soạn sẵn). Vậy mà Copilot vẫn trả lời rất cụ thể: nhận ra đoạn chọn là **một `case` trong `switch` gán query param vào URI**, chỉ ra **case đang là chuỗi rỗng `''`** — *"which might not be the intended behavior"* — và đề xuất thay bằng **`case 'power':`**. **Hai chip thay được cả một đoạn mô tả dài.** Đó là toàn bộ lý do hai khái niệm này tồn tại.
+
 **Slash command dùng được ở cả inline chat lẫn chat interface.** Kết hợp slash command + inline chat cho phép bạn **chọn cách làm việc hợp với mình và hợp với code đang viết**.
 
 ## 6. Selective context — ngữ cảnh chọn lọc

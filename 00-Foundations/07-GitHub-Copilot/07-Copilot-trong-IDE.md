@@ -122,6 +122,16 @@ Muốn câu trả lời chính xác thì phải **đóng khung câu hỏi bằng
 *Ảnh: Microsoft Learn — dùng `#file` để chọn và tham chiếu trực tiếp một file trong câu hỏi.*
 Gõ `#file` trong ô chat, VS Code hiện danh sách file để chọn; sau khi chọn, tham chiếu xuất hiện trong prompt dưới dạng `#file:controller.js` và Copilot chỉ đọc nội dung file đó thay vì đoán từ toàn workspace.
 
+![[chat-agent-slash-file-combined.png]]
+
+*Ảnh: Microsoft Learn — prompt `@workspace /explain #file:controller.js`.*
+⭐ **Ảnh quan trọng nhất của note này: cả ba ký hiệu dùng chung trong MỘT prompt**, mỗi cái một màu chip riêng trong ô chat — **`@workspace`** (agent: *nhìn ở đâu* — toàn workspace) + **`/explain`** (hành động: *làm gì*) + **`#file:controller.js`** (tài nguyên: *nhìn cái gì*). Thứ tự thường là **`@` → `/` → `#`**. Dòng xác nhận **"GitHub Copilot used @workspace /explain"** và **"Used 1 reference"** cho biết Copilot **thật sự đã dùng** agent và tham chiếu bạn chỉ định — nếu dòng này thiếu, prompt của bạn chưa được scope như mong đợi.
+
+![[chat-workspace-tests-mocha.png]]
+
+*Ảnh: Microsoft Learn — prompt `@workspace /tests using Mocha`.*
+Biến thể **`@` + `/` + ngôn ngữ tự nhiên bổ sung**: `using Mocha` là **phần free-text ghép sau slash command** để ép framework cụ thể. Đây là mẹo thực dụng — slash command cho **ý định**, chữ thêm phía sau cho **ràng buộc**. Kết quả: Copilot sinh test dùng `assert` + `supertest`, đúng hệ Mocha, thay vì đoán framework.
+
 ### 2.3. Slash commands trong Chat
 
 | Lệnh | Tác dụng | Ví dụ gốc |

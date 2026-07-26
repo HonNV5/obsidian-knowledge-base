@@ -106,6 +106,11 @@ Ví dụ theo giáo trình:
 - **One-shot** — đưa sẵn một hàm đổi nhiệt độ mẫu, rồi bảo Copilot viết hàm tương tự.
 - **Few-shot** — đưa vài mẫu, rồi yêu cầu sinh code chào hỏi **tuỳ theo thời điểm trong ngày**.
 
+![[few-shot-prompt-example.png]]
+
+*Ảnh: Microsoft Learn — ví dụ few-shot nguyên văn trong giáo trình (`greeting.py`).*
+**Đọc ảnh theo đúng cấu trúc few-shot:** dòng 1-11 là **3 ví dụ** (`Example 1/2/3`, mỗi ví dụ nêu rõ **Input → Output**: 9 AM → *"Good morning!"*, 2 PM → *"Good afternoon!"*, 7 PM → *"Good evening!"*) → dòng 13-14 là **yêu cầu thật** (*"Now, generate a python code that takes the current time as input using the datetime module and returns the appropriate greeting message"*) → từ dòng 16 là **code Copilot sinh ra**. Đáng chú ý: Copilot **tự suy ra một nhánh thứ tư mà 3 ví dụ không hề nêu** — `else: print("Good night!")` cho khung giờ sau 21h. Đó chính là điều nguồn gọi là few-shot **"xử lý nhiều kịch bản và edge case"**: bạn cho pattern, model **ngoại suy phần còn thiếu**.
+
 ```python
 # FEW-SHOT: đưa 2 mẫu để Copilot bắt pattern
 # greet(6)  -> "Good morning"

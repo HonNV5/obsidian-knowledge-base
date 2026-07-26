@@ -88,6 +88,16 @@ Trong phiên tương tác, bạn có thể **dùng `@` để chọn một file c
 *Ảnh: Microsoft Learn — Copilot CLI đề xuất lệnh shell từ mô tả bằng ngôn ngữ tự nhiên.*
 Chú ý mô hình tương tác: Copilot **không tự chạy lệnh** — nó trình bày lệnh đề xuất rồi **hỏi xác nhận** trước khi thực thi. Đúng tinh thần *"Always review commands before execution"* trong phần Tips, và là lý do bước 3 (`/revise`) tồn tại: bạn tinh chỉnh gợi ý **trước** khi cho chạy.
 
+![[cli-mcp-file-reference.png]]
+
+*Ảnh: Microsoft Learn — Copilot CLI với `@` mở danh sách file, kèm dòng trạng thái MCP và model.*
+**Ba thông tin trong một khung hình, cả ba đều là điểm thi:**
+1. **`● Connected to GitHub MCP Server`** — CLI **kết nối MCP server ngay từ phiên**, không cần cấu hình thêm. Đây là chỗ `/mcp` quản lý (xem [[12-GitHub-MCP-Server]]).
+2. **`@` trong CLI ≠ `@` trong IDE Chat.** Trong Chat, `@` gọi **agent** (`@terminal`, `@workspace`). Trong **CLI**, gõ `@` mở **trình chọn đường dẫn file/thư mục** của repo (`@copilot-node-calculator/my-project/README.md`). ⚠️ **Cặp dễ nhầm** — cùng ký hiệu, hai nghĩa khác hẳn tuỳ surface.
+3. **`claude-sonnet-4.5 (1x)`** góc phải — CLI hiển thị **model đang dùng** ngay trên màn hình. Đổi bằng **`/model`** (xem bảng slash command §1.3). Ảnh cũng cho thấy Copilot CLI **không bị khoá vào model của OpenAI**.
+
+> 🔎 **Ngoài nguồn** — giáo trình **không giải thích ký hiệu `(1x)`** trong ảnh. Theo cách GitHub hiển thị hạn mức, con số này là **hệ số nhân premium request** của model: `1x` = **1 PRU/request**, model suy luận mạnh hơn có hệ số cao hơn. Ăn khớp với bảng model/PRU ở [[07-Copilot-trong-IDE]] (GPT-4o 1 PRU, o1-preview/o1-mini 2 PRU), nhưng **đề thi bám giáo trình thì chỉ hỏi tới `/model`**, không hỏi ký hiệu này.
+
 ### 1.5. Cấu hình ngoài interactive mode
 
 Cấu hình Copilot CLI ở chế độ **non-interactive** được quản lý qua **permission prompt, command-line flag, và file cấu hình cục bộ**. Chúng kiểm soát Copilot **truy cập được gì và làm được gì thay bạn**:
