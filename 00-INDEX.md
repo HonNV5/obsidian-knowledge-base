@@ -12,7 +12,7 @@ tags: [index, moc, fresher, frontend, backend, database, ai, cloud, devops]
 
 | #   | Domain        | MOC                                                  | Trạng thái |
 | --- | ------------- | ---------------------------------------------------- | ---------- |
-| 00  | Foundations   | [[00-Foundations/00-MOC-Foundations\|MOC Foundations]] | ✅ xong     |
+| 00  | Foundations   | [[00-Foundations/00-MOC-Foundations\|MOC Foundations]] | ✅ xong (+ [[00-Foundations/07-GitHub-Copilot/00-MOC-GH300\|GH-300 Copilot]] 18 note) |
 | 01  | Frontend      | [[01-Frontend/00-MOC-Frontend\|MOC Frontend]]          | ✅ xong     |
 | 02  | Backend       | [[02-Backend/00-MOC-Backend\|MOC Backend (FastAPI)]]   | 🔜 khung   |
 | 03  | Database      | [[03-Database/00-MOC-Database\|MOC Database]]           | ✅ 17 note  |
@@ -31,7 +31,7 @@ tags: [index, moc, fresher, frontend, backend, database, ai, cloud, devops]
 
 ```mermaid
 flowchart TD
-    F["Foundations<br/>(DSA · Git · Agile)"]
+    F["Foundations<br/>(DSA · Git · Agile · GH-300)"]
     FE["Frontend<br/>(HTML/CSS · DOM · JS · TS · React)"]
     DB["Database<br/>(PostgreSQL)"]
     AI["AI 🎯<br/>(RAG → RAG nâng cao → LLMOps → LangGraph/Agentic)"]

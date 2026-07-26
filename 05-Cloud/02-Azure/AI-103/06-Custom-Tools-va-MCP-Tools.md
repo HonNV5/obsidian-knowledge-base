@@ -120,3 +120,4 @@ Ba tầng tích hợp tool, chọn theo mức "động": (1) **function calling*
 - [[07-Foundry-IQ-Knowledge-Agents]] — knowledge base cũng nối qua MCP
 - [[12-Language-va-Speech-MCP-Server]] — MCP server dựng sẵn của Azure Language/Speech
 - [[../AZ-204/00-MOC-AZ-204|MOC AZ-204]] — Azure Functions trigger/binding chi tiết
+- [[../../../00-Foundations/07-GitHub-Copilot/12-GitHub-MCP-Server|GH-300/12 — GitHub MCP Server]] — cùng chuẩn MCP nhìn từ phía **client** (VS Code, OAuth/PAT, `mcp.json`) thay vì phía server Foundry

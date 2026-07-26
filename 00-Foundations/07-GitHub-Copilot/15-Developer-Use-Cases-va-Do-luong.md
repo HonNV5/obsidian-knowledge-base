@@ -87,6 +87,19 @@ flowchart LR
 
 **Comprehensive feature delivery workflow — 5 pha:** **Analysis** (phân tích user story + yêu cầu kỹ thuật → implementation plan) → **Implementation** (sinh trọn code tính năng) → **Quality assurance** (bộ test + quality check) → **Documentation** (tài liệu người dùng, API docs, maintenance guide) → **Deployment** (deployment script + cấu hình monitoring).
 
+### 2.1. Personalized code completion
+
+Copilot **thích nghi với phong cách code cá nhân và ngữ cảnh dự án**, gợi ý **ngày càng sát hơn theo thời gian**. Nguồn nêu **đúng hai cơ chế**:
+
+| Cơ chế | Nội dung |
+|---|---|
+| **Contextual understanding** | Phân tích **môi trường phát triển và cấu trúc dự án** để hoàn thành code **chính xác và liên quan hơn** |
+| **Learning from patterns** | Trong lúc bạn làm việc, Copilot **học pattern và sở thích code của bạn** rồi **điều chỉnh gợi ý theo** |
+
+> **Ví dụ nguồn:** Copilot ban đầu gợi ý **một kiểu viết hàm**; khi developer dùng **kiểu ưa thích của mình**, Copilot **thích nghi và tiếp tục gợi ý theo kiểu đó**.
+
+> Kết quả tổng: developer **giảm mạnh thời gian cho việc lặp đi lặp lại**, **học công nghệ mới nhanh hơn**, và **giữ tập trung tốt hơn suốt ngày làm việc** → có thêm thời gian cho **bài toán phức tạp và đổi mới**. *(Xem thêm **5 mặt Copilot thích nghi phong cách code** ở [[07-Copilot-trong-IDE]].)*
+
 ## 3. Copilot khớp sở thích developer
 
 | Nhóm | Nội dung |
