@@ -34,6 +34,8 @@ Cặp phân biệt hay thi: **LLM vs SLM** (trí tuệ vs chi phí/tốc độ �
 
 ## 3. Benchmark — 4 nhóm chỉ số chọn model
 
+**Xem benchmark ở 2 chỗ trong portal:** (1) **Model leaderboard** trong model catalog — xếp hạng so sánh **toàn bộ** model theo quality / safety / estimated cost / throughput, để tìm model top cho một metric; (2) **tab Benchmarks trong model card** của một model cụ thể — chi tiết model đó trên từng metric & dataset, kèm biểu đồ so với model tương đương.
+
 ### Quality (chất lượng)
 - **Quality index**: điểm trung bình chuẩn hoá 0→1 trên nhiều dataset.
 - Dataset tiêu biểu: **Arena-Hard** (QA đối kháng), **BIG-Bench Hard** (suy luận), **GPQA** (câu hỏi sau đại học), **HumanEval+ / MBPP+** (code), **MATH** (toán), **MMLU-Pro** (kiến thức tổng quát), **IFEval** (tuân thủ chỉ dẫn).

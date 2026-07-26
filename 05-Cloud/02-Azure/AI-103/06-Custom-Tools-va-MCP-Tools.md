@@ -45,7 +45,7 @@ agent = project_client.agents.create_version(
 ```
 
 ### Azure Functions tool
-`AzureFunctionTool` khai **input_binding + output_binding** (storage queue: queue name + service endpoint) + định nghĩa function (name/description/parameters). Agent gửi request qua queue vào, nhận kết quả từ queue ra.
+`AzureFunctionTool` → `AzureFunctionDefinition` khai **`input_binding` + `output_binding`**, mỗi cái là `AzureFunctionBinding(storage_queue=AzureFunctionStorageQueue(queue_name=…, queue_service_endpoint=…))`, cộng `AzureFunctionDefinitionFunction(name/description/parameters)`. Agent gửi request **qua storage queue vào**, nhận kết quả **từ queue ra** — hợp workflow event-driven (trigger HTTP hoặc queue message).
 
 ### OpenAPI tool
 Viết file spec JSON (openapi 3.x: servers.url, paths, operationId, parameters, responses) → nạp bằng `OpenApiTool(openapi=OpenApiFunctionDefinition(name=…, spec=…, auth=OpenApiAnonymousAuthDetails()))`. **3 kiểu auth hỗ trợ: anonymous, API key, managed identity.**
@@ -61,7 +61,15 @@ flowchart LR
     A -->|"call_tool(name, args)"| S
 ```
 
-**Ưu điểm:** *integrate once* — thêm/sửa/xoá tool **tập trung ở server**, agent luôn dùng version mới nhất, không redeploy; **interoperable** giữa các LLM (đổi model không phải làm lại tích hợp); **auth chuẩn hoá** (không phải quản key lẻ tẻ từng API).
+**Ưu điểm:** *integrate once* — thêm/sửa/xoá tool **tập trung ở server**, agent luôn dùng version mới nhất, không redeploy; **interoperable** giữa các LLM (đổi model không phải làm lại tích hợp); **auth chuẩn hoá** (không phải quản key lẻ tẻ từng API); **reusable components** (build tool một lần, dùng cho nhiều agent/project) và **community-driven tools** (lấy tool có sẵn từ MCP registry).
+
+### Ba loại MCP server trong tool catalog (hay hỏi phân loại)
+
+| Loại | Chạy ở đâu | Dùng khi |
+|------|-----------|----------|
+| **Remote MCP server** | Host bên ngoài, truy cập qua network | **Phổ biến nhất cho production** |
+| **Local MCP server** | Chạy trên máy dev | Test custom tool **trước khi deploy** |
+| **Custom MCP server** | Bản cài đặt MCP server của chính bạn | Nhu cầu đặc thù, tự viết tool |
 
 ### Tự dựng MCP server + client (cách thủ công)
 

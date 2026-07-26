@@ -94,9 +94,11 @@ async with connect(endpoint=…, credential=…, model="gpt-4o") as conn:
         ...
 ```
 
-**Event handling quyết định trải nghiệm** — các event chính:
+Tên **class SDK** cho các tuỳ chọn trên (đề hay dùng đúng tên class): `turn_detection=`**`AzureSemanticVadMultilingual()`** (bản semantic VAD **đa ngôn ngữ**) hoặc `ServerVad(...)`; `input_audio_echo_cancellation=`**`AudioEchoCancellation()`**; `input_audio_noise_reduction=`**`AudioNoiseReduction(type="azure_deep_noise_suppression")`**.
 
-| Event | Xử lý |
+**Event handling quyết định trải nghiệm** — server event là enum **`ServerEventType`** (so sánh `event.type == ServerEventType.<TÊN>`):
+
+| Event (`ServerEventType.…`) | Xử lý |
 |-------|-------|
 | `SESSION_UPDATED` | Phiên sẵn sàng → bắt đầu capture mic |
 | `INPUT_AUDIO_BUFFER_SPEECH_STARTED` | **User ngắt lời → clear playback queue NGAY** (không thì agent "nói đè" user) |
@@ -135,7 +137,7 @@ Chọn tầng nào: **file audio đã có, cần transcript/đọc văn bản m�
 → Hội thoại: **WebSocket** (event JSON hai chiều). Avatar streaming: **WebRTC**.
 
 **Q6. User ngắt lời voice agent — xử lý thế nào?**
-→ Bắt server event `INPUT_AUDIO_BUFFER_SPEECH_STARTED` và **clear playback queue ngay tại client**; nếu chờ API xử lý interrupt thì client vẫn phát nốt câu cũ → agent nói đè user.
+→ Bắt server event **`ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STARTED`** và **clear playback queue ngay tại client**; nếu chờ API xử lý interrupt thì client vẫn phát nốt câu cũ → agent nói đè user.
 
 **Q7. Vì sao nối Voice Live với agent thay vì model?**
 → Agent đóng gói instructions + logic + config → client chỉ cần agent_id; sửa hành vi hội thoại không phải sửa code voice; tách concerns nên dễ maintain khi có nhiều trải nghiệm hội thoại.
