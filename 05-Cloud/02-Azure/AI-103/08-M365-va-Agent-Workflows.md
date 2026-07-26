@@ -29,6 +29,17 @@ Luồng: chọn agent version → **Publish → Publish to Teams and Microsoft 3
 
 **Cập nhật agent:** sửa trong Foundry → test → republish package mới; organization scope có thể phải duyệt lại tuỳ policy.
 
+### Test & troubleshoot SAU khi publish (câu tình huống hay ra)
+
+Playground **không** mô phỏng trải nghiệm published — publish xong phải test **trong Teams** 4 thứ: UI render response đúng chưa, luồng **authentication**, thời gian phản hồi thực tế, và **identity của agent published có đủ quyền chưa**. Nên nhờ **nhiều người** test (mỗi người hỏi một kiểu) trên **desktop / web / mobile** (lỗi đặc thù từng client).
+
+| Triệu chứng | Nguyên nhân thường gặp | Cách xử lý |
+|-------------|------------------------|------------|
+| **Agent không trả lời trong Teams** | Azure Bot Service không chạy / cấu hình sai / lỗi mạng | Kiểm tra Bot Service resource tồn tại trong Azure portal → xem **Bot Service logs** → xác nhận agent đã publish và package upload đúng |
+| **Tool chạy ở Foundry nhưng fail trong Teams** | Identity mới của agent published **thiếu quyền** | Tìm identity của published agent trong Foundry portal → vào resource mà tool truy cập → **gán RBAC** cho identity đó |
+| **User không tìm thấy agent** | Sai scope publish / **admin chưa duyệt** (organization) / tenant chặn custom app | Shared: gửi link trực tiếp. Organization: kiểm tra duyệt trong M365 admin center. Kiểm tra tenant policy cho custom app |
+| **Phản hồi chậm** | Instructions phức tạp, tool query dữ liệu lớn, latency mạng | Đơn giản hoá instructions, tối ưu cấu hình tool, test từ nhiều vị trí mạng để khoanh vùng |
+
 ### 2. Microsoft 365 Agents Toolkit (nâng cao)
 
 Khi cần vượt khả năng publish trực tiếp → dựng **app proxy** giữa M365 và agent: `Teams/Copilot → Proxy App (Agents Toolkit) → Foundry Agent`.
@@ -73,7 +84,7 @@ flowchart LR
     C --> E["End<br/>kết quả cuối"]
 ```
 
-- **Invoke**: gọi agent trong project (hoặc tạo mới tại chỗ); cấu hình tools/knowledge/memory/guardrails; định nghĩa **structured output** (JSON schema trong Details tab) để output **dự đoán được** → nuôi routing/điều kiện; lưu output vào **variable** (Action settings). Agent **tái sử dụng** được giữa nhiều workflow (một categorization agent dùng chung).
+- **Invoke** (tài liệu gọi lẫn lộn 3 tên: **Invoke node / Invoke agent node / Agent node** — đề trắc nghiệm dùng "**Agent node**"): gọi agent trong project (hoặc tạo mới tại chỗ); cấu hình tools/knowledge/memory/guardrails; định nghĩa **structured output** (JSON schema trong Details tab) để output **dự đoán được** → nuôi routing/điều kiện; lưu output vào **variable** (Action settings). Agent **tái sử dụng** được giữa nhiều workflow (một categorization agent dùng chung).
 - **Flow**: **If/Else** (rẽ nhánh theo điều kiện), **Go To** (nhảy node), **For Each** (lặp qua list — xử lý nhiều ticket không nhân đôi node).
 - **Data transformation**: **Set Variable**, **Reset Variable**, **Parse value** (bóc dữ liệu từ structured output / đổi format).
 - **Basic chat**: nhắn/hỏi user, bắt câu trả lời vào variable. **End**: kết thúc, trả kết quả.

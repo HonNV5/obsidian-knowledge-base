@@ -77,6 +77,28 @@ tags: [azure, ai-103, cheatsheet, microsoft-foundry, exam, fresher]
 | 4 severity × 5 category (thêm task-adherence) | Content filters |
 | Batch deployment **−50%**, trả kết quả trong **24h** | Deployment types |
 
+## 4b. Bẫy đã kiểm chứng với 96 câu Knowledge check gốc
+
+> Đối chiếu toàn bộ 96 câu hỏi cuối module của 4 learning path với bộ note này (2026-07-26): **trả lời được hết**. Dưới đây là các cặp mà cách diễn đạt của đề dễ khiến chọn nhầm:
+
+| Đề hỏi | Đáp án đúng | Vì sao dễ sai |
+|--------|-------------|---------------|
+| Node nào dùng để **invoke một AI agent** trong workflow? | **Agent node** | Tài liệu gọi lẫn lộn Invoke / Invoke agent / Agent node — cùng một thứ |
+| **Brainstorming + giải quyết vấn đề cộng tác** giữa nhiều agent? | **Group chat** | Dễ chọn nhầm Concurrent; concurrent là làm **độc lập rồi gộp**, không trao đổi |
+| Bước ĐẦU TIÊN của unified orchestration workflow? | **Define your agents** (mô tả năng lực) | Không phải "chọn pattern" — pattern là bước 2 |
+| Component nào giữ **conversation state** trong Agent Framework? | **AgentThread** | Không phải ChatAgent (là agent) hay AzureAIAgentClient (là kết nối) |
+| Foundry **Agent Service** quản state bằng gì? | **Responses API** | Không phải tự code lưu history |
+| Benchmark nào cho biết model xử lý prompt & trả lời **nhanh, đầy đủ**? | **Throughput** | Dễ chọn nhầm Latency/TTFT — throughput mới là "lượng token/s" |
+| Metric đo **đúng ngữ pháp, tự nhiên**? | **Fluency** | Coherence = mạch lạc; Groundedness = bám nguồn; Relevance = đúng câu hỏi |
+| Endpoint nào **hỗ trợ OpenAI API rộng nhất**? | **Azure OpenAI endpoint** | Project endpoint mạnh về asset Foundry, không phải tương thích OpenAI |
+| Nguồn nào cho **realtime SharePoint + governance M365**? | **SharePoint Remote** | Indexed nhanh hơn nhưng không realtime |
+| Vì sao Speech MCP server cần Storage? | **Lưu file audio input/output** | Language MCP không cần vì chỉ xử lý text |
+| Đổi giọng synthesis? | `speech_synthesis_voice_name` của **SpeechConfig** | Không phải AudioConfig (thiết bị ra) hay output format |
+| Chỉ định ngôn ngữ ĐÍCH khi dịch giọng nói? | **SpeechTranslationConfig** | Không phải TranslationRecognizer (là client) |
+| Sinh ảnh — lọc catalog theo inference task nào? | **Text to image** | "Image to text" là chiều mô tả ảnh |
+| Dịch vụ nào cấp **built-in skills** cho AI Search? | **Foundry Tools** | Không phải Azure Functions (đó là **custom** skill) |
+| Projection nào ra **schema quan hệ**? | **Table** | Object = JSON, File = ảnh |
+
 ## 5. Mẹo "đọc đề đoán đáp án"
 
 - Thấy **"agent tự chọn tool theo mô tả"** → dynamic tool discovery của **MCP**.
