@@ -28,6 +28,11 @@ Giáo trình mô tả: **bản thân Space giống như một LLM** mà bạn **
 | Nhược | Có thể **kém chính xác** (*less precise*) | Không tự tìm nội dung ngoài phạm vi đã đính kèm |
 | Dùng khi | Hỏi mở, chưa biết cần gì | Cần câu trả lời **nhất quán, tái lập được** trên **một chủ đề hẹp** |
 
+![[copilot-space-ui.png]]
+
+*Ảnh: Microsoft Learn — giao diện một Copilot Space ("Travel App Frontend", Private).*
+Ảnh này cho thấy đúng ba thứ tạo nên một Space và không có ở chat thường: cột phải liệt kê **Instructions** ("Always use tailwind and react" — chỉ dẫn áp cho mọi câu hỏi trong Space) và **Attachments** đếm số nguồn đã gắn (`globals.css`, `layout.tsx`, `page.tsx`, `Navbar.tsx`, `App.tsx`…); phần giữa giữ **lịch sử hội thoại** của riêng Space. Nhãn **Private** + dòng **Owned by github** chính là hai trục *visibility* và *ownership* nói ở mục 4.
+
 **Khi nào nên tạo Space:** khi bạn muốn câu trả lời **consistent, reproducible** trên chủ đề đóng khung chặt — ví dụ **một service cụ thể**, **một runbook/playbook**, hoặc **một dataset đã biết**.
 
 ```
@@ -62,6 +67,11 @@ Dùng mục **"Instructions"** để đưa chỉ dẫn cụ thể, gồm 3 nhóm
 | **Goals** (mục tiêu) | *"Summarize the onboarding process"* |
 | **Style preferences** (phong cách) | *"Write in a formal tone"* |
 | **Canonical examples** (ví dụ chuẩn) | *"Sample output should look like…"* |
+
+![[copilot-space-instructions.png]]
+
+*Ảnh: Microsoft Learn — ô "Instructions" trong phần thiết lập Space.*
+Instructions là **văn bản tự do**, không phải form có trường cố định — nên chất lượng phụ thuộc hoàn toàn vào việc bạn có nêu đủ **mục tiêu · phong cách · ví dụ chuẩn** hay không. Đây cũng là nơi đặt dòng "How to use this Space" mà phần governance yêu cầu.
 
 Nguyên tắc: giữ instructions **ngắn, tập trung, hành động được** (*brief, focused, and actionable*). Nếu Space phục vụ một **workflow hoặc hướng dẫn xử lý sự cố**, hãy đưa vào **các bước tuần tự** hoặc **prompt mẫu**. **Cập nhật instructions bất cứ lúc nào** để tinh chỉnh trọng tâm.
 

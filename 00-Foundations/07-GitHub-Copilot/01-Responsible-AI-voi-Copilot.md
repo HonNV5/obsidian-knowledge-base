@@ -62,6 +62,11 @@ flowchart TB
     RAI --> A["Accountability<br/>con người chịu trách nhiệm"]
 ```
 
+![[six-principles-responsible-ai.png]]
+
+*Ảnh: Microsoft Learn — sáu nguyên tắc Responsible AI của Microsoft và GitHub.*
+Bản gốc xếp 6 nguyên tắc **ngang hàng nhau**, không phân cấp — điều này có ý nghĩa khi làm bài: đề sẽ không hỏi "nguyên tắc nào quan trọng nhất". Ngoại lệ duy nhất là **Accountability**, được Responsible AI Standard của Microsoft gọi riêng là *foundational principle* (nguyên tắc nền tảng) trong phần mô tả chi tiết.
+
 Bảng tra nhanh — **một câu định nghĩa cho mỗi nguyên tắc** (đúng nguyên văn giáo trình):
 
 | # | Nguyên tắc | Câu định nghĩa gốc | Nghĩa tiếng Việt |
