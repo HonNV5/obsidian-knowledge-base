@@ -26,6 +26,16 @@ flowchart TD
 
 > `general document` model đời cũ đã **deprecated** (2023-10-31-preview) — năng lực key-value/entity gộp vào **layout**.
 
+![[doc-intelligence-read-highres.png]]
+
+*Ảnh: Microsoft Learn — model **read** chạy trên bản vẽ kỹ thuật độ phân giải cao trong Document Intelligence Studio.*
+Ảnh minh hoạ **add-on `ocrHighResolution`**: bản vẽ cơ khí có hàng trăm ký hiệu kích thước cỡ chữ rất nhỏ, mỗi chuỗi text nhận được đều bọc **bounding box** riêng. Cột trái là bộ **sample của Studio** — `read-resume.png`, `read-german.pdf` (phát hiện ngôn ngữ), `read-barcode.pdf` (add-on `barcodes`), `read-highres.png` — đúng bốn năng lực của nhóm read. Nút **Run analysis** / **Analyze options** là nơi bật/tắt add-on.
+
+![[doc-intelligence-layout-tables.png]]
+
+*Ảnh: Microsoft Learn — model **layout**, tab **Tables** trong panel Content.*
+**Điểm phân biệt read vs layout gói gọn ở panel bên phải:** layout tách kết quả thành **4 tab — Text · Selection mark · Tables · Figures**. Ảnh đang mở **Tables**, hiện *"Table 1: This is a dummy table"* với **header Name/Corp/Remark** và các dòng Foo/Bar được dựng lại **thành bảng thật**, không phải chuỗi text phẳng. Trong tài liệu gốc bên trái còn thấy **selection mark** (☑ clear, ☑ precise, ☑ vague, ☑ coherent, ☐ Incomprehensible) — chính là thứ `read` **không** trích được. Nút **Query fields** là add-on `queryFields`.
+
 ### Prebuilt models (không cần train)
 
 | Nhóm | Model tiêu biểu |

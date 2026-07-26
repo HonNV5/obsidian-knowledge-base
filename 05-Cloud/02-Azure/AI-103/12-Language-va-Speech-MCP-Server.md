@@ -33,6 +33,12 @@ Agent nối server → nhận **catalog tool + mô tả** → **tự chọn tool
 - Lần đầu dùng tool sẽ có **approval prompt** (duyệt 1 lần hoặc "Always approve"); pane **Logs** cho xem từng tool call (input + kết quả).
 
 ### Kết nối (2 cách)
+
+![[foundry-select-tool-mcp-catalog.png]]
+
+*Ảnh: Microsoft Learn — hộp thoại **Select a tool → Catalog** trong Foundry portal.*
+**Đúng bước 1 dưới đây nhìn từ UI**, và cho thấy nhãn phân loại quan trọng: **`Remote MCP`** vs **`Local MCP`**. Ở đây **Azure Language in Foundry Tools** và **Foundry MCP Server** đều là **Remote MCP + Preview**, còn **Azure MCP Server** là **Local MCP**. Cùng danh sách còn có **Azure Speech MCP Server** (mục 3 của note), **Microsoft MCP Server for Enterprise**, **Neon**. Bộ lọc gồm **Type · Provider · Category · Registry · Supported auth** — `Supported auth` là chỗ biết tool nhận key-based hay Entra ID. Ba tab **Configured / Catalog / Custom** ứng đúng 3 loại MCP server ở [[06-Custom-Tools-va-MCP-Tools]].
+
 1. **Portal**: Tools page → Connect a tool → "Azure Language in Foundry Tools" → điền Foundry resource name + auth **Key-based** (credential = **`Ocp-Apim-Subscription-Key`** — key của project) → Use in an agent. Sau đó **nhớ sửa instructions** của agent: "Use the Azure Language tool to perform text analysis tasks."
 2. **Code**:
 ```python

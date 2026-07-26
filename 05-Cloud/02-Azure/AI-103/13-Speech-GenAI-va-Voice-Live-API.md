@@ -15,6 +15,13 @@ tags: [azure, ai-103, azure-speech, voice-live, ssml, speech-to-text, text-to-sp
 | **Speech → text** | `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize` (diarize = tách người nói) | `client.audio.transcriptions.create(model=…, file=audio_file, response_format="text")` |
 | **Text → speech** | `gpt-4o-tts`, `gpt-4o-mini-tts` | `client.audio.speech.with_streaming_response.create(model=…, voice="alloy", input=…, instructions="Speak in an upbeat, excited tone.")` → `stream_to_file(...)` |
 
+![[model-catalog-speech-models.png]]
+
+*Ảnh: Microsoft Learn — model catalog Foundry lọc từ khoá `speech`.*
+**Cách tìm đúng model trong catalog:** gõ `speech` + đặt filter **Inference tasks: Speech to text** và **Collections: Direct from Azure** → còn **6 model**, chia đúng hai cột: **Speech to text** — `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-transcribe`; **Text to speech** — `tts-hd`, `gpt-4o-mini-tts`, `tts`.
+
+> ⚠️ **Chi tiết dễ sai:** bảng trên (theo phần code của giáo trình) ghi TTS là **`gpt-4o-tts`**, nhưng **catalog thực tế hiển thị `tts` và `tts-hd`**. Khi deploy hãy lấy **đúng tên trong catalog**; `tts-hd` là bản chất lượng cao hơn. Bộ lọc bên trái (**Collections · Capabilities · Source · Inference tasks · Fine-tuning methods · Industry**) chính là bộ lọc đã mô tả ở [[02-Model-Catalog-Chon-Deploy-Danh-gia]].
+
 Model availability **khác nhau theo region**. Use case: transcribe call/meeting, caption video, giao diện audible (accessibility), assistant đọc tin nhắn.
 
 ## 2. Tầng 2 — Azure Speech in Foundry Tools (Speech SDK)

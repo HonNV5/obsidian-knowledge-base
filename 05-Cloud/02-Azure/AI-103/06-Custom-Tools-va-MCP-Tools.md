@@ -71,6 +71,11 @@ flowchart LR
 | **Local MCP server** | Chạy trên máy dev | Test custom tool **trước khi deploy** |
 | **Custom MCP server** | Bản cài đặt MCP server của chính bạn | Nhu cầu đặc thù, tự viết tool |
 
+![[foundry-tool-catalog-mcp-vscode.png]]
+
+*Ảnh: Microsoft Learn — **Foundry Tool Catalog** trong VS Code (© Microsoft, dùng cho mục đích học tập).*
+**Đây là bảng phân loại ở trên nhìn từ UI.** Mỗi card tool mang **2 nhãn**: nhãn loại (**`MCP: Stdio`** = local server chạy qua stdin/stdout) và nhãn nguồn (**`Microsoft`** vs **`Partner`**) — biết ai chịu trách nhiệm bảo trì. Catalog phân theo **12 category** (Analytics, Commerce, Customer Service, Databases, Developer Tools, Finance, Geolocation, Human Resources, IT & Management, Machine Learning, Monitoring & Diagnostics, Productivity, Security, Storage, Web). Ví dụ có sẵn: **Playwright, MarkItDown, ImageSorcery, Notion, Sequential Thinking, Memory, DuckDB, Microsoft Clarity, Firecrawl**. Nút **Create New MCP Server** chính là lối vào loại thứ ba — **custom MCP server**. Ba tab **Configured / Catalog / Manual** = đã nối / duyệt catalog / khai báo tay.
+
 ### Tự dựng MCP server + client (cách thủ công)
 
 - **Server**: `FastMCP("server-name")` — decorator `@mcp.tool` biến hàm Python thành tool; **type hints + docstring tự sinh tool definition**; serve qua HTTP.

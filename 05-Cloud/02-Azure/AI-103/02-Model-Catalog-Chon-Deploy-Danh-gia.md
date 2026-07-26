@@ -113,6 +113,11 @@ Quy trình deploy: model card → **Deploy** (default/custom settings) → đặ
 - Đối tượng: **Model** (tự sinh output khi chạy) / **Agent** / **Dataset** (output có sẵn).
 - Dữ liệu test: upload CSV/JSONL, dùng dataset có sẵn, hoặc **generate synthetic dataset** (mô tả topic → hệ thống tự sinh).
 - **Evaluator library**: xem/quản lý evaluator Microsoft-curated + custom, có version management.
+
+![[evaluation-detailed-metrics-fluency.png]]
+
+*Ảnh: Microsoft Learn — kết quả **Detailed metrics** của một lần evaluation, cột metric **Fluency**.*
+**Đây là hình dạng thật của đầu ra AI-assisted metric — đọc kỹ để khỏi bất ngờ khi thi:** mỗi dòng là **một cặp query–response**, chấm theo **thang 1-5** kèm nhãn **`Pass`/`Fail`** (`Pass: 4`, `Pass: 5`, `Pass: 3`, và một dòng **`Fail: 1`**), **không phải một điểm trung bình duy nhất**. Quan trọng hơn là cột **`Fluency.reason`** — evaluator model **giải thích bằng lời vì sao chấm điểm đó** (*"well-written, coherent, grammatically correct… however, it lacks the advanced vocabulary"*), nên bạn **truy được nguyên nhân**, không chỉ thấy con số. Dòng `Fail: 1` cho thấy tiêu chí trượt: *"The RESPONSE is incomplete and does not provide sufficient content to evaluate fluency"*. Menu trái là **8 khu vực của portal**: Agents · Models · Fine-tune · Tools · Knowledge · Data · **Evaluations** · Guardrails.
 - Điểm thấp → cải thiện theo thang: **prompt engineering → đổi model → RAG → fine-tuning** (độ phức tạp & chi phí tăng dần — xem [[04-Toi-uu-Model-va-Responsible-GenAI]]).
 
 `★ Insight ─────────────────────────────────────`
