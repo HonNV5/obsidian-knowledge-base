@@ -77,4 +77,5 @@ flowchart TD
 - [[02-Backend/09-Authorization-RBAC|Backend: OWASP & security]] — nền DevSecOps
 - [[04-AI/03-LLMOps-Evaluation/00-MOC-LLMOps-Evaluation|MOC: LLMOps]] — họ hàng MLOps
 - [[05-Cloud/00-MOC-Cloud|MOC: Cloud]] — nền cloud native / IaC
+- [[05-Cloud/02-Azure/AB-100/21-ALM-cho-Du-lieu-va-Copilot-Studio|AB-100/21]] · [[05-Cloud/02-Azure/AB-100/22-ALM-cho-Foundry-Custom-Model-va-D365|AB-100/22]] — **ALM cho AI**: CI/CD kinh điển không đủ khi artifact là *dữ liệu grounding, prompt, agent và model*. Bổ sung **promotion gate đòi bằng chứng**, **lineage & sensitivity label**, **Model Card**, quy tắc *"never train on production knowledge"* và *"no direct editing in production"*
 - [[00-INDEX|🏠 Index tổng]]

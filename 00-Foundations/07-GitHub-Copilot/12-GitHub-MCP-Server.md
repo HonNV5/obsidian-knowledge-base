@@ -312,3 +312,4 @@ Cùng một giao thức, nhìn từ hai đầu — nắm cả hai thì hiểu v�
 - [[10-Agent-Mode-trong-IDE]] — agent mode là điều kiện để tool MCP hoạt động
 - [[09-Copilot-CLI-va-GitHub-Copilot-App]] — `/mcp` trong Copilot CLI cũng quản MCP server
 - [[../../05-Cloud/02-Azure/AI-103/06-Custom-Tools-va-MCP-Tools|AI-103/06 — MCP phía Azure Foundry]] — cùng chuẩn, nhìn từ đầu server: `MCPTool`, `require_approval`, 3 loại MCP server
+- [[../../05-Cloud/02-Azure/AB-100/14-Extensibility-Custom-Model-M365-Copilot-MCP|AB-100/14 — MCP trong Copilot Studio]] — góc thứ ba: MCP như **hợp đồng ngữ cảnh** cấp doanh nghiệp cho Dynamics 365 F&O, quản trị ở tầng tenant

@@ -17,7 +17,7 @@ tags: [index, moc, fresher, frontend, backend, database, ai, cloud, devops]
 | 02  | Backend       | [[02-Backend/00-MOC-Backend\|MOC Backend (FastAPI)]]   | 🔜 khung   |
 | 03  | Database      | [[03-Database/00-MOC-Database\|MOC Database]]           | ✅ 17 note  |
 | 04  | AI 🎯         | [[04-AI/00-MOC-AI\|MOC AI (RAG/LangChain/LangGraph)]]   | ✅ 18 note  |
-| 05  | Cloud         | [[05-Cloud/00-MOC-Cloud\|MOC Cloud (AWS + Azure)]]      | 🔜 khung   |
+| 05  | Cloud         | [[05-Cloud/00-MOC-Cloud\|MOC Cloud (AWS + Azure)]]      | ✅ Azure 76 note (AZ-900 · AI-Azure · [[05-Cloud/02-Azure/AI-103/00-MOC-AI-103\|AI-103]] · [[05-Cloud/02-Azure/AZ-204/00-MOC-AZ-204\|AZ-204]] · [[05-Cloud/02-Azure/AB-100/00-MOC-AB100\|AB-100]]) · 🔜 AWS Bedrock còn khung |
 | 06  | DevOps        | [[06-DevOps/00-MOC-DevOps\|MOC DevOps]]                 | ✅ 12 note  |
 
 ## 📋 Cheatsheet (Frontend)

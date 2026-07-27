@@ -14,6 +14,7 @@ tags: [moc, cloud, azure, az-900, azure-openai, fresher]
 > - `AI-Azure/` — 3 note AI-Azure đối chiếu Bedrock (cụm E) ✅
 > - `AI-103/` — lộ trình Azure AI Engineer thế hệ Microsoft Foundry, 20 note (cụm F) — xem [[AI-103/00-MOC-AI-103|MOC riêng]] ✅
 > - `AZ-204/` — cert Azure Developer Associate, 13 note (cụm G) — xem [[AZ-204/00-MOC-AZ-204|MOC riêng]] ✅
+> - `AB-100/` — cert **expert-level** Agentic AI Business Solutions Architect, 25 note (cụm H) — xem [[AB-100/00-MOC-AB100|MOC riêng]] ✅
 
 ## Cụm A — Cloud Concepts (AZ-900 Module 1)
 
@@ -74,6 +75,14 @@ tags: [moc, cloud, azure, az-900, azure-openai, fresher]
 |------|------------|
 | [[AZ-204/00-MOC-AZ-204\|MOC: AZ-204]] (13 note, 6 cụm) | ✅ HOÀN TẤT |
 
+## Cụm H — AB-100 (Agentic AI Business Solutions Architect)
+
+> Cert **expert-level** cho vai trò **solution architect** thiết kế giải pháp nghiệp vụ *agentic-first*: **Copilot Studio · Dynamics 365 · Power Platform · Microsoft 365 Copilot · Microsoft Foundry**. Chia theo 3 functional group có trọng số (Plan 25-30% · Design 25-30% · **Deploy 40-45%**). Xem MOC riêng:
+
+| Note | Trạng thái |
+|------|------------|
+| [[AB-100/00-MOC-AB100\|MOC: AB-100]] (25 note, 5 cụm) | ✅ HOÀN TẤT |
+
 ## Lộ trình
 
 ```mermaid
@@ -83,9 +92,15 @@ flowchart LR
     C --> D["D. Cheatsheet (15)"]
     B -.nền cho.-> E["E. AI-Azure<br/>(16-18)"]
     E -.đối chiếu.-> AWS["AWS Bedrock"]
+    B --> G["G. AZ-204<br/>developer"]
+    E --> F["F. AI-103<br/>AI engineer"]
+    F --> H["H. AB-100<br/>solution architect"]
 ```
+
+> **Trục nghề nghiệp của ba cert sau:** AZ-204 (viết code trên Azure) → AI-103 (dựng giải pháp AI/agent bằng Foundry) → **AB-100** (thiết kế giải pháp nghiệp vụ có agent, tầm architect). AB-100 **không lặp lại** kỹ thuật của AI-103 mà cross-link sang.
 
 ## Liên quan
 - [[../00-MOC-Cloud|MOC: Cloud]]
 - [[../01-AWS-Bedrock/00-MOC-AWS-Bedrock|MOC: AWS Bedrock]] — nhánh bám đề thi (so sánh tương đương)
 - [[../../04-AI/00-MOC-AI|MOC: AI]] — RAG/LLM dùng Azure OpenAI + AI Search
+- [[AB-100/00-MOC-AB100|MOC: AB-100]] — góc solution architect: Copilot Studio, Dynamics 365, Power Platform

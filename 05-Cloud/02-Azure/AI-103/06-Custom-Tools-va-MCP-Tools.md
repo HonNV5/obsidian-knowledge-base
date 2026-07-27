@@ -126,3 +126,4 @@ Ba tầng tích hợp tool, chọn theo mức "động": (1) **function calling*
 - [[12-Language-va-Speech-MCP-Server]] — MCP server dựng sẵn của Azure Language/Speech
 - [[../AZ-204/00-MOC-AZ-204|MOC AZ-204]] — Azure Functions trigger/binding chi tiết
 - [[../../../00-Foundations/07-GitHub-Copilot/12-GitHub-MCP-Server|GH-300/12 — GitHub MCP Server]] — cùng chuẩn MCP nhìn từ phía **client** (VS Code, OAuth/PAT, `mcp.json`) thay vì phía server Foundry
+- [[../AB-100/14-Extensibility-Custom-Model-M365-Copilot-MCP|AB-100/14 — MCP trong Copilot Studio]] — góc **solution architect**: MCP như một *hợp đồng ngữ cảnh* phơi data entity & business process metadata của **Dynamics 365 F&O**; so sánh MCP ↔ A2A ↔ connector ở [[../AB-100/25-AB-100-Cheatsheet-va-QA|AB-100/25 §3.5]]
