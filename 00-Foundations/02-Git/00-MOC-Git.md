@@ -48,3 +48,4 @@ module: L1_AL_NLS_VCG
 ## Liên quan
 - [[../00-MOC-Foundations|MOC: Foundations]]
 - [[../03-Agile-Scrum/00-MOC-Agile-Scrum|MOC: Agile-Scrum]]
+- [[../07-GitHub-Copilot/00-MOC-GH300|MOC: GitHub Copilot (GH-300)]] — cùng hệ sinh thái GitHub: PR, code review, Actions nay có thêm lớp AI

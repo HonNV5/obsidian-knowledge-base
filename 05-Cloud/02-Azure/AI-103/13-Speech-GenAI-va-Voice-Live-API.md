@@ -15,6 +15,13 @@ tags: [azure, ai-103, azure-speech, voice-live, ssml, speech-to-text, text-to-sp
 | **Speech → text** | `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize` (diarize = tách người nói) | `client.audio.transcriptions.create(model=…, file=audio_file, response_format="text")` |
 | **Text → speech** | `gpt-4o-tts`, `gpt-4o-mini-tts` | `client.audio.speech.with_streaming_response.create(model=…, voice="alloy", input=…, instructions="Speak in an upbeat, excited tone.")` → `stream_to_file(...)` |
 
+![[model-catalog-speech-models.png]]
+
+*Ảnh: Microsoft Learn — model catalog Foundry lọc từ khoá `speech`.*
+**Cách tìm đúng model trong catalog:** gõ `speech` + đặt filter **Inference tasks: Speech to text** và **Collections: Direct from Azure** → còn **6 model**, chia đúng hai cột: **Speech to text** — `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-transcribe`; **Text to speech** — `tts-hd`, `gpt-4o-mini-tts`, `tts`.
+
+> ⚠️ **Chi tiết dễ sai:** bảng trên (theo phần code của giáo trình) ghi TTS là **`gpt-4o-tts`**, nhưng **catalog thực tế hiển thị `tts` và `tts-hd`**. Khi deploy hãy lấy **đúng tên trong catalog**; `tts-hd` là bản chất lượng cao hơn. Bộ lọc bên trái (**Collections · Capabilities · Source · Inference tasks · Fine-tuning methods · Industry**) chính là bộ lọc đã mô tả ở [[02-Model-Catalog-Chon-Deploy-Danh-gia]].
+
 Model availability **khác nhau theo region**. Use case: transcribe call/meeting, caption video, giao diện audible (accessibility), assistant đọc tin nhắn.
 
 ## 2. Tầng 2 — Azure Speech in Foundry Tools (Speech SDK)
@@ -94,9 +101,11 @@ async with connect(endpoint=…, credential=…, model="gpt-4o") as conn:
         ...
 ```
 
-**Event handling quyết định trải nghiệm** — các event chính:
+Tên **class SDK** cho các tuỳ chọn trên (đề hay dùng đúng tên class): `turn_detection=`**`AzureSemanticVadMultilingual()`** (bản semantic VAD **đa ngôn ngữ**) hoặc `ServerVad(...)`; `input_audio_echo_cancellation=`**`AudioEchoCancellation()`**; `input_audio_noise_reduction=`**`AudioNoiseReduction(type="azure_deep_noise_suppression")`**.
 
-| Event | Xử lý |
+**Event handling quyết định trải nghiệm** — server event là enum **`ServerEventType`** (so sánh `event.type == ServerEventType.<TÊN>`):
+
+| Event (`ServerEventType.…`) | Xử lý |
 |-------|-------|
 | `SESSION_UPDATED` | Phiên sẵn sàng → bắt đầu capture mic |
 | `INPUT_AUDIO_BUFFER_SPEECH_STARTED` | **User ngắt lời → clear playback queue NGAY** (không thì agent "nói đè" user) |
@@ -135,7 +144,7 @@ Chọn tầng nào: **file audio đã có, cần transcript/đọc văn bản m�
 → Hội thoại: **WebSocket** (event JSON hai chiều). Avatar streaming: **WebRTC**.
 
 **Q6. User ngắt lời voice agent — xử lý thế nào?**
-→ Bắt server event `INPUT_AUDIO_BUFFER_SPEECH_STARTED` và **clear playback queue ngay tại client**; nếu chờ API xử lý interrupt thì client vẫn phát nốt câu cũ → agent nói đè user.
+→ Bắt server event **`ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STARTED`** và **clear playback queue ngay tại client**; nếu chờ API xử lý interrupt thì client vẫn phát nốt câu cũ → agent nói đè user.
 
 **Q7. Vì sao nối Voice Live với agent thay vì model?**
 → Agent đóng gói instructions + logic + config → client chỉ cần agent_id; sửa hành vi hội thoại không phải sửa code voice; tách concerns nên dễ maintain khi có nhiều trải nghiệm hội thoại.

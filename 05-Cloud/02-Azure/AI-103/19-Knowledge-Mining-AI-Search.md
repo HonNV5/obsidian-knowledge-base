@@ -57,6 +57,11 @@ flowchart LR
 | 3 | **Document retrieval** | Match term ↔ index, ra tập document |
 | 4 | **Scoring** | Chấm điểm relevance bằng **TF/IDF** |
 
+![[vector-similarity-embeddings.png]]
+
+*Ảnh: Microsoft Learn — hai câu gần nghĩa biểu diễn thành vector trong không gian embedding.*
+**Ảnh giải thích vì sao full-text search (TF/IDF ở trên) là chưa đủ.** Document 1 *"The **children** played **joyfully** in the **park**"* và Document 2 *"**Kids happily** ran around the **playground**"* **không dùng chung một từ nào** → TF/IDF chấm điểm gần **0**. Nhưng khi nhúng thành vector, các cặp **children↔kids**, **park↔playground**, **joyfully↔happily** nằm **sát nhau về góc** (cung màu tím trong ảnh) — độ tương đồng đo bằng **cosine similarity** (góc nhỏ ⇒ nghĩa gần). Đó là nền tảng của **vector search**, và là lý do **hybrid search** (từ khoá + vector) cho kết quả tốt hơn từng cái riêng lẻ.
+
 ### Filter, facet, sort
 
 ```text

@@ -118,15 +118,23 @@ Diễn giải sơ đồ — Orchestrator quản **2 ledger** và một vòng ki�
 
 | Pattern | Builder | Dùng khi | Tránh khi |
 |---------|---------|----------|-----------|
-| **Concurrent** | `ConcurrentBuilder` | Task chạy độc lập song song: brainstorm, ensemble reasoning, voting/quorum, cần nhanh | Agent phụ thuộc output nhau; quota hạn chế; khó gộp/giải xung đột kết quả |
+| **Concurrent** | `ConcurrentBuilder` | Task chạy **độc lập** song song: **parallel analysis, independent subtasks, ensemble decision making**, voting/quorum, cần nhanh | Agent phụ thuộc output nhau; quota hạn chế; khó gộp/giải xung đột kết quả |
 | **Sequential** | `SequentialBuilder` | Bước phải theo thứ tự, mỗi bước tinh chỉnh bước trước (draft → review → polish) | Các bước độc lập; 1 agent đủ; bước đầu fail mà không chặn được downstream |
 | **Handoff** | control workflow + switch-case | Không biết trước agent nào/thứ tự nào; chuyên môn lộ ra trong lúc xử lý (support routing) | Thứ tự cố định biết trước; sợ loop handoff vô hạn |
-| **Group chat** | `GroupChatBuilder` | Thảo luận/iterate: brainstorm, debate-consensus, **maker-checker loop**, có human tham gia; minh bạch 1 thread | Cần tốc độ; pipeline đơn giản là đủ; >3 agent khó quản |
+| **Group chat** | `GroupChatBuilder` | ⚠️ **brainstorming, collaborative problem solving, building consensus** (đề gốc xếp brainstorm vào ĐÂY, không phải concurrent — vì có trao đổi qua lại); **maker-checker loop**, có human tham gia; minh bạch 1 thread | Cần tốc độ; pipeline đơn giản là đủ; >3 agent khó quản |
 | **Magentic** | `MagenticBuilder` | Bài toán **mở, không có đường giải định trước**; cần **plan được tài liệu hoá** cho người review; **task ledger** ghi goals/subgoals/plan, tinh chỉnh dần | Đường giải cố định; ưu tiên tốc độ (magentic nặng planning); dễ stall/loop |
 
 - **Group chat manager** mỗi vòng gọi theo thứ tự: `should_request_user_input` → `should_terminate` (vd max rounds) → `filter_results` (nếu kết thúc) → `select_next_agent` (nếu tiếp). Custom bằng cách extend `GroupChatManager`.
 - **Magentic** có standard manager cấu hình max round count, stall limit, reset count.
-- Luồng dùng chung mọi pattern: định nghĩa agents → chọn builder (+ manager nếu cần) → configure callbacks → run (`run`/`run_stream`) → lấy kết quả async (`get_outputs()` / `WorkflowOutputEvent`).
+- **Unified orchestration workflow — 6 bước dùng chung mọi pattern** (thứ tự hay bị hỏi, **bước 1 là "define your agents"**):
+  1. **Define your agents** + mô tả năng lực từng agent
+  2. **Select & create orchestration pattern** (thêm manager agent nếu cần)
+  3. *(Tuỳ chọn)* configure **callbacks/transforms** cho input/output tuỳ biến
+  4. **Start a runtime** để quản lý execution
+  5. **Invoke** orchestration với task
+  6. **Retrieve results** kiểu **async, non-blocking** (`get_outputs()` / `WorkflowOutputEvent`)
+
+  Mọi pattern **chung một interface** → đổi chiến lược orchestration không phải viết lại agent logic hay học API mới.
 
 `★ Insight ─────────────────────────────────────`
 Map sang LangGraph để nhớ nhanh: Executor ≈ node, Edge ≈ edge (fan-out/fan-in ≈ parallel branches), Magentic manager ≈ supervisor pattern, maker-checker ≈ reflection. Câu thi hay gặp: "Semantic Kernel hay AutoGen?" — trả lời: cả hai đã **hợp nhất thành Microsoft Agent Framework**; SK đóng góp enterprise features, AutoGen đóng góp agent abstractions.
@@ -141,7 +149,10 @@ Map sang LangGraph để nhớ nhanh: Executor ≈ node, Edge ≈ edge (fan-out/
 → **Service-side chat history**: state hội thoại sống ở service, tự persist qua nhiều request — app restart/scale-out không mất context. Provider Chat Completion thuần chỉ có local history trong memory.
 
 **Q3. Chọn pattern nào: nhiều chuyên gia phân tích cùng một tài liệu theo góc nhìn khác nhau, cần nhanh?**
-→ **Concurrent** — cùng task phát cho nhiều agent chạy song song độc lập, gộp kết quả (ensemble). Không dùng sequential (chậm, không cần phụ thuộc nhau).
+→ **Concurrent** — cùng task phát cho nhiều agent chạy song song **độc lập**, gộp kết quả (ensemble). Không dùng sequential (chậm, không cần phụ thuộc nhau).
+
+**Q3b. ⚠️ Còn "brainstorming và giải quyết vấn đề CỘNG TÁC giữa nhiều agent" thì chọn gì?**
+→ **Group chat** — đây là bẫy phân biệt với Q3: concurrent = làm việc **độc lập rồi gộp** (không thấy output của nhau); group chat = **trao đổi qua lại trong một hội thoại chung** có chat manager chọn ai nói tiếp → mới đúng nghĩa brainstorm/consensus.
 
 **Q4. Maker-checker loop là gì, thuộc pattern nào?**
 → Một agent (maker) tạo nội dung, agent khác (checker) review/phê bình, lặp đến khi đạt — trường hợp đặc biệt của **group chat**, chat manager quản lượt nói.

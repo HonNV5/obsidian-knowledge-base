@@ -18,6 +18,7 @@ tags: [moc, foundations, dsa, python, git, agile, cis, leap, soft-skill, fresher
 | 4 | CIS — Client Interview Skills | `CIS` | [[04-CIS-Client-Interview/00-MOC-CIS\|MOC CIS]] | ✅ 9 note |
 | 5 | LEAP — Effective Communication | `LEAP` | [[05-LEAP-Communication/00-MOC-LEAP\|MOC LEAP]] | ✅ 6 note |
 | 6 | Python (ngôn ngữ nền tảng) | — | [[06-Python/00-MOC-Python\|MOC Python]] | ✅ 20 note |
+| 7 | GitHub Copilot (chứng chỉ) | `GH-300` | [[07-GitHub-Copilot/00-MOC-GH300\|MOC GH-300]] | ✅ 18 note |
 
 ## Liên quan
 - [[../00-INDEX|🏠 Index tổng]]

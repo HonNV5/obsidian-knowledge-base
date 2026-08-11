@@ -47,6 +47,11 @@ flowchart TD
   - **Tools** — công cụ agent dùng: built-in (web search, code interpreter), kết nối tool bên ngoài qua **MCP** (Model Context Protocol — giao thức chuẩn cho LLM gọi tool/dữ liệu ngoài), và **Foundry Tools** (bộ dịch vụ AI dựng sẵn, host ngay trong Foundry resource).
   - **Knowledge** — agent nối tới kho tri thức; **Foundry IQ** tạo **một kết nối tri thức trung tâm dựa trên MCP** thay vì nối lẻ tẻ từng nguồn.
 
+![[foundry-project-home-endpoints.png]]
+
+*Ảnh: Microsoft Learn — trang Home của một project trong Microsoft Foundry (`ai-project`).*
+⭐ **Ảnh chốt điểm dễ nhầm nhất của mục này: project cấp ĐỒNG THỜI hai endpoint khác nhau** — **Project endpoint** (`https://ai-resrce.services.ai.azure.com/api/proje…`, dùng SDK riêng của Foundry) và **Azure OpenAI endpoint** (`https://ai-resrce.openai.azure.com/openai/v1`, dùng SDK chuẩn OpenAI) — cộng thêm **API key** dùng chung. Chọn endpoint nào là **chọn SDK nào**, không phải chọn model nào. Hai lối vào lớn ở trên phản ánh đúng hai cách làm agent trong bộ note này: **Build an agent** (*không viết code* → [[05-Foundry-Agent-Service-va-VS-Code]]) vs **Code an agent** (*Microsoft Agent Framework, toàn quyền* → [[09-Agent-Framework-va-Multi-Agent]]). Toggle **New Foundry** ở đầu trang cho biết đây là **giao diện Foundry thế hệ mới** — lý do đề thi bản cũ (AI-102) không còn khớp.
+
 > ⚠️ **Phân biệt kiến trúc mới vs cũ:** project kiểu mới gắn trực tiếp vào Foundry resource. Project **classic** (cũ) dùng kiến trúc **hub-based** (hub + project — như thời Azure AI Studio). Thi/phỏng vấn: "hub" là dấu hiệu tài liệu cũ.
 
 ## 3. Foundry portal vs Foundry SDK

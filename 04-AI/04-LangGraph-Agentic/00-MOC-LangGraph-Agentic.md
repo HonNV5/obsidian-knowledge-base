@@ -32,3 +32,5 @@ module: L2_AI_LGAA
 ## Liên quan
 - [[../03-LLMOps-Evaluation/00-MOC-LLMOps-Evaluation|MOC: LLMOps & Evaluation]]
 - [[../00-MOC-AI|MOC: AI]]
+- [[../../05-Cloud/02-Azure/AI-103/09-Agent-Framework-va-Multi-Agent|AI-103/09 — Microsoft Agent Framework]] — multi-agent phía Microsoft, đối chiếu với graph/state của LangGraph
+- [[../../05-Cloud/02-Azure/AB-100/05-Chien-luoc-Multi-Agent-va-Chon-nen-tang|AB-100/05 — chiến lược multi-agent]] — góc **solution architect**: ⭐ *khi nào KHÔNG nên multi-agent* (mặc định single-agent, chỉ leo thang khi có bằng chứng), 5 mẫu điều phối *Sequential · Concurrent · Group chat · Handoff · Magentic*

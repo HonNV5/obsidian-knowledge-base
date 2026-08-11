@@ -145,6 +145,15 @@ sequenceDiagram
 
 Best practices: hàm nhỏ một mục đích; **validate arguments** model đưa (không tin mù); trả lỗi rõ ràng để model suy luận tiếp; log tool usage; **thao tác nhạy cảm phải yêu cầu authorization tường minh**.
 
+### Giới hạn từng tool — giáo trình có hẳn mục "Limitations"
+
+| Tool | Giới hạn phải nhớ |
+|------|-------------------|
+| **code_interpreter** | Sandbox **không có network ra ngoài**; một số thư viện có thể không sẵn (báo model biết nếu thư viện chuẩn lỗi); có **timeout** với thao tác chạy lâu; **giới hạn bộ nhớ** — dataset khổng lồ phải streaming/chunking; code sinh ra **phải review** trước khi dùng production |
+| **web_search** | Chỉ thấy nội dung **công khai & index được** tại thời điểm query; **chất lượng nguồn không đồng đều** (vẫn cần người kiểm); nội dung web đổi → **chạy lại có thể ra kết quả khác**; một số môi trường bị chặn theo region/policy/mạng |
+| **file_search** | Chất lượng phụ thuộc **chất lượng + độ phủ tài liệu** và độ liên quan của chunk; **vector store quá lớn hoặc trộn nhiều domain** → context kém tập trung (nên tách store theo HR/legal/finance); **file cập nhật phải re-index** mới tìm được nội dung mới; grounding **không thay thế** review của người trong quyết định nhạy cảm |
+| **function** | Model **không tự chạy** hàm — app chạy; phải validate tham số & kiểm soát thao tác nhạy cảm |
+
 `★ Insight ─────────────────────────────────────`
 Bốn tool ứng bốn "lỗ hổng" của LLM thuần: không biết tính chính xác (**code_interpreter**), không biết tin mới (**web_search**), không biết dữ liệu riêng của bạn (**file_search**), không chạm được hệ thống của bạn (**function**). Trả lời phỏng vấn "khi nào dùng tool nào" bằng cách gọi tên lỗ hổng tương ứng là gọn nhất.
 `─────────────────────────────────────────────────`

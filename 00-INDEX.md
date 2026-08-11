@@ -12,12 +12,12 @@ tags: [index, moc, fresher, frontend, backend, database, ai, cloud, devops]
 
 | #   | Domain        | MOC                                                  | Trạng thái |
 | --- | ------------- | ---------------------------------------------------- | ---------- |
-| 00  | Foundations   | [[00-Foundations/00-MOC-Foundations\|MOC Foundations]] | ✅ xong     |
+| 00  | Foundations   | [[00-Foundations/00-MOC-Foundations\|MOC Foundations]] | ✅ xong (+ [[00-Foundations/07-GitHub-Copilot/00-MOC-GH300\|GH-300 Copilot]] 18 note) |
 | 01  | Frontend      | [[01-Frontend/00-MOC-Frontend\|MOC Frontend]]          | ✅ xong     |
 | 02  | Backend       | [[02-Backend/00-MOC-Backend\|MOC Backend (FastAPI)]]   | 🔜 khung   |
 | 03  | Database      | [[03-Database/00-MOC-Database\|MOC Database]]           | ✅ 17 note  |
 | 04  | AI 🎯         | [[04-AI/00-MOC-AI\|MOC AI (RAG/LangChain/LangGraph)]]   | ✅ 18 note  |
-| 05  | Cloud         | [[05-Cloud/00-MOC-Cloud\|MOC Cloud (AWS + Azure)]]      | 🔜 khung   |
+| 05  | Cloud         | [[05-Cloud/00-MOC-Cloud\|MOC Cloud (AWS + Azure)]]      | ✅ Azure 76 note (AZ-900 · AI-Azure · [[05-Cloud/02-Azure/AI-103/00-MOC-AI-103\|AI-103]] · [[05-Cloud/02-Azure/AZ-204/00-MOC-AZ-204\|AZ-204]] · [[05-Cloud/02-Azure/AB-100/00-MOC-AB100\|AB-100]]) · 🔜 AWS Bedrock còn khung |
 | 06  | DevOps        | [[06-DevOps/00-MOC-DevOps\|MOC DevOps]]                 | ✅ 12 note  |
 
 ## 📋 Cheatsheet (Frontend)
@@ -31,7 +31,7 @@ tags: [index, moc, fresher, frontend, backend, database, ai, cloud, devops]
 
 ```mermaid
 flowchart TD
-    F["Foundations<br/>(DSA · Git · Agile)"]
+    F["Foundations<br/>(DSA · Git · Agile · GH-300)"]
     FE["Frontend<br/>(HTML/CSS · DOM · JS · TS · React)"]
     DB["Database<br/>(PostgreSQL)"]
     AI["AI 🎯<br/>(RAG → RAG nâng cao → LLMOps → LangGraph/Agentic)"]

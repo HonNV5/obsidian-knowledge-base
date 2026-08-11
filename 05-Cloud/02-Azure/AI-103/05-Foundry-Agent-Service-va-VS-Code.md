@@ -49,6 +49,11 @@ Tính năng chính: **automatic tool calling** (service tự lo cả vòng đờ
 ![[vscode-foundry-extension-agent-builder.png]]
 *Ảnh: Microsoft Learn — Microsoft Foundry extension trong VS Code: sidebar Resources (Models, Declarative Agents với version v1/v2, Hosted Agents, Tools, Assets, Classic) + khu Tools (Model Catalog, các Playground, Local Visualizer, Deploy Hosted Agents); giữa là Agent Builder (name/model/instructions/tool File Search) và phải là Playground test ngay.*
 
+![[foundry-toolkit-vscode-extension.png]]
+
+*Ảnh: Microsoft Learn — trang extension **Foundry Toolkit for VS Code** trong Marketplace.*
+⚠️ **Bẫy đổi tên — rất hợp làm câu hỏi thi:** dòng mô tả ghi rõ *"Microsoft Foundry Toolkit is **the new name for AI Toolkit**"*, và note trong ảnh xác nhận *"we have renamed this product… **All existing features remain unchanged**"*. Tài liệu cũ gọi **AI Toolkit**, tài liệu mới gọi **Foundry Toolkit** — **cùng một thứ**. Chú ý **identifier vẫn là `ms-windows-ai-studio.windows-ai-studio`** (dấu vết của tên đời đầu *AI Studio*). Nó là một **extension pack**, ship kèm sẵn extension **Microsoft Foundry** — nên cài một cái là có cả hai. Sidebar trong ảnh cho thấy taxonomy chuẩn: **Resources** (Models · Prompt Agents · **Workflows (Preview)** · **Hosted Agents (Preview)** · Tools · Knowledge · Classic) và **Tools** (Model Catalog · Model Playground · Remote/Local Agent Playground · Local Visualizer · Deploy Hosted Agents).
+
 Tài nguyên cần: Foundry **project** + **model deployment** (hạ tầng còn lại tự provision). Tuỳ chọn thêm: AI Search (Foundry IQ/File Search), Storage, Key Vault, Azure Functions.
 
 ### Cấu trúc YAML agent (declarative prompt-based)

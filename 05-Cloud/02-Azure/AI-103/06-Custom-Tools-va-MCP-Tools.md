@@ -45,7 +45,7 @@ agent = project_client.agents.create_version(
 ```
 
 ### Azure Functions tool
-`AzureFunctionTool` khai **input_binding + output_binding** (storage queue: queue name + service endpoint) + định nghĩa function (name/description/parameters). Agent gửi request qua queue vào, nhận kết quả từ queue ra.
+`AzureFunctionTool` → `AzureFunctionDefinition` khai **`input_binding` + `output_binding`**, mỗi cái là `AzureFunctionBinding(storage_queue=AzureFunctionStorageQueue(queue_name=…, queue_service_endpoint=…))`, cộng `AzureFunctionDefinitionFunction(name/description/parameters)`. Agent gửi request **qua storage queue vào**, nhận kết quả **từ queue ra** — hợp workflow event-driven (trigger HTTP hoặc queue message).
 
 ### OpenAPI tool
 Viết file spec JSON (openapi 3.x: servers.url, paths, operationId, parameters, responses) → nạp bằng `OpenApiTool(openapi=OpenApiFunctionDefinition(name=…, spec=…, auth=OpenApiAnonymousAuthDetails()))`. **3 kiểu auth hỗ trợ: anonymous, API key, managed identity.**
@@ -61,7 +61,20 @@ flowchart LR
     A -->|"call_tool(name, args)"| S
 ```
 
-**Ưu điểm:** *integrate once* — thêm/sửa/xoá tool **tập trung ở server**, agent luôn dùng version mới nhất, không redeploy; **interoperable** giữa các LLM (đổi model không phải làm lại tích hợp); **auth chuẩn hoá** (không phải quản key lẻ tẻ từng API).
+**Ưu điểm:** *integrate once* — thêm/sửa/xoá tool **tập trung ở server**, agent luôn dùng version mới nhất, không redeploy; **interoperable** giữa các LLM (đổi model không phải làm lại tích hợp); **auth chuẩn hoá** (không phải quản key lẻ tẻ từng API); **reusable components** (build tool một lần, dùng cho nhiều agent/project) và **community-driven tools** (lấy tool có sẵn từ MCP registry).
+
+### Ba loại MCP server trong tool catalog (hay hỏi phân loại)
+
+| Loại | Chạy ở đâu | Dùng khi |
+|------|-----------|----------|
+| **Remote MCP server** | Host bên ngoài, truy cập qua network | **Phổ biến nhất cho production** |
+| **Local MCP server** | Chạy trên máy dev | Test custom tool **trước khi deploy** |
+| **Custom MCP server** | Bản cài đặt MCP server của chính bạn | Nhu cầu đặc thù, tự viết tool |
+
+![[foundry-tool-catalog-mcp-vscode.png]]
+
+*Ảnh: Microsoft Learn — **Foundry Tool Catalog** trong VS Code (© Microsoft, dùng cho mục đích học tập).*
+**Đây là bảng phân loại ở trên nhìn từ UI.** Mỗi card tool mang **2 nhãn**: nhãn loại (**`MCP: Stdio`** = local server chạy qua stdin/stdout) và nhãn nguồn (**`Microsoft`** vs **`Partner`**) — biết ai chịu trách nhiệm bảo trì. Catalog phân theo **12 category** (Analytics, Commerce, Customer Service, Databases, Developer Tools, Finance, Geolocation, Human Resources, IT & Management, Machine Learning, Monitoring & Diagnostics, Productivity, Security, Storage, Web). Ví dụ có sẵn: **Playwright, MarkItDown, ImageSorcery, Notion, Sequential Thinking, Memory, DuckDB, Microsoft Clarity, Firecrawl**. Nút **Create New MCP Server** chính là lối vào loại thứ ba — **custom MCP server**. Ba tab **Configured / Catalog / Manual** = đã nối / duyệt catalog / khai báo tay.
 
 ### Tự dựng MCP server + client (cách thủ công)
 
@@ -112,3 +125,5 @@ Ba tầng tích hợp tool, chọn theo mức "động": (1) **function calling*
 - [[07-Foundry-IQ-Knowledge-Agents]] — knowledge base cũng nối qua MCP
 - [[12-Language-va-Speech-MCP-Server]] — MCP server dựng sẵn của Azure Language/Speech
 - [[../AZ-204/00-MOC-AZ-204|MOC AZ-204]] — Azure Functions trigger/binding chi tiết
+- [[../../../00-Foundations/07-GitHub-Copilot/12-GitHub-MCP-Server|GH-300/12 — GitHub MCP Server]] — cùng chuẩn MCP nhìn từ phía **client** (VS Code, OAuth/PAT, `mcp.json`) thay vì phía server Foundry
+- [[../AB-100/14-Extensibility-Custom-Model-M365-Copilot-MCP|AB-100/14 — MCP trong Copilot Studio]] — góc **solution architect**: MCP như một *hợp đồng ngữ cảnh* phơi data entity & business process metadata của **Dynamics 365 F&O**; so sánh MCP ↔ A2A ↔ connector ở [[../AB-100/25-AB-100-Cheatsheet-va-QA|AB-100/25 §3.5]]

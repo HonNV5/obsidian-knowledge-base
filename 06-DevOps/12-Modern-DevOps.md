@@ -102,7 +102,7 @@ Cách dùng & ba làn sóng:
 | Vận hành | detection/alerting tốt hơn từ dữ liệu monitoring; **k8sgpt** giải thích trạng thái K8s; chuyển đổi ngôn ngữ/tool (Terraform → AWS CLI) |
 | Code review & security | tìm thay đổi rủi ro trước khi vào pipeline |
 
-**Ba wave:** (1) *code* — AI hỗ trợ code/review/test/docs trong IDE (Copilot — đã thật); (2) *systems* — AI lo alerting/monitoring/runbook (còn sơ khai); (3) *people* — AI làm platform self-service dễ dùng & tăng cộng tác.
+**Ba wave:** (1) *code* — AI hỗ trợ code/review/test/docs trong IDE ([[../00-Foundations/07-GitHub-Copilot/02-Copilot-la-gi-va-cac-goi|Copilot]] — đã thật); (2) *systems* — AI lo alerting/monitoring/runbook (còn sơ khai); (3) *people* — AI làm platform self-service dễ dùng & tăng cộng tác.
 
 > [!question] Phỏng vấn: "Platform engineering / paved road là gì? Rủi ro lớn nhất?"
 > **Paved road / golden path** = tạo **self-service automation chuẩn hoá** (CI/CD, observability, security làm sẵn) để các đội tự lấy thứ cần thay vì chờ team khác — mở rộng (scale) văn hoá DevOps. **Platform engineering** là phiên bản toàn diện của nó. Rủi ro lớn nhất: biến thành **"IT tập trung quan liêu" trá hình** — tối ưu cho team platform thay vì cho value stream. Phòng tránh: quản platform **như sản phẩm** (có PM, không ép dùng) và theo **Lean** (đừng build quá nhiều trước khi biết nhu cầu).

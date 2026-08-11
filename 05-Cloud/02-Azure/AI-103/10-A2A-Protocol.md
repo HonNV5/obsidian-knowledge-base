@@ -116,3 +116,4 @@ Phân biệt vàng **MCP vs A2A** (câu thi chắc chắn gặp): **MCP** = chu�
 - [[06-Custom-Tools-va-MCP-Tools]] — MCP (chuẩn agent↔tool, đối chiếu A2A)
 - [[09-Agent-Framework-va-Multi-Agent]] — orchestration nội bộ một hệ (A2A cho liên hệ)
 - [[../../../02-Backend/00-MOC-Backend|MOC Backend]] — Starlette/Uvicorn/ASGI (nền của A2A server)
+- [[../AB-100/25-AB-100-Cheatsheet-va-QA|AB-100/25 §3.5]] — bảng **MCP ↔ A2A ↔ connector**: khi nào chọn cái nào trong kiến trúc nghiệp vụ (giáo trình AB-100 chỉ nhắc A2A **2 lần**, phần lý thuyết nằm ở note này)
