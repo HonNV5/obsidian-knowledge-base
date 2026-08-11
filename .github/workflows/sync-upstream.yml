@@ -1,0 +1,33 @@
+name: Sync upstream
+
+on:
+  schedule:
+    - cron: "0 2 */3 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add upstream
+        run: |
+          git remote add upstream https://github.com/phanminhtai1029/obsidian-knowledge-base.git
+          git fetch upstream
+
+      - name: Sync upstream
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout main
+          git merge upstream/main --no-edit
+          git push origin main
